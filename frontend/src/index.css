@@ -256,3 +256,17 @@ tr:hover td { background: #f8fafc; }
 .flex-end { justify-content: flex-end; }
 .search-bar { max-width: 300px; margin-bottom: 14px; }
 .divider { border: none; border-top: 1px solid #e2e8f0; margin: 16px 0; }
+
+@media (max-width: 768px) {
+  .app-layout { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; }
+  .sidebar-brand { text-align: center; }
+  .sidebar-nav { display: flex; overflow-x: auto; padding: 0; white-space: nowrap; }
+  .sidebar-nav a { padding: 12px 16px; display: inline-block; }
+  .sidebar-footer { display: none; }
+  .main-content { padding: 12px; }
+  .home-cards { flex-direction: column; }
+  .home-card { max-width: 100%; }
+  .modal { width: 95%; padding: 16px; }
+  .login-box { width: 90%; padding: 20px; }
+}

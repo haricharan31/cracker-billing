@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: crackers-billing-backend
+    env: node
+    buildCommand: "cd backend && npm install"
+    startCommand: "cd backend && npm start"
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        value: laxminarasimha_secret_key_2025
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: DATABASE_URL
+        value: postgresql://neondb_owner:npg_jgP6J8YdiyVT@ep-billowing-band-anghobwd.c-6.us-east-1.aws.neon.tech/neondb?sslmode=require

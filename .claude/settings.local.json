@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npm create:*)",
+      "Bash(PGPASSWORD=admin123 psql -U postgres -c \"SELECT version\\(\\);\")",
+      "Bash(PGPASSWORD=admin123 psql -U postgres -c \"DROP DATABASE IF EXISTS crackers_billing;\")",
+      "Bash(PGPASSWORD=admin123 psql -U postgres -c \"CREATE DATABASE crackers_billing;\")",
+      "Bash(PGPASSWORD=admin123 psql -U postgres -d crackers_billing -f /c/crackers-billing/database/schema.sql)",
+      "Bash(node scripts/seed-users.js)",
+      "Bash(node src/server.js)",
+      "Bash(curl -s http://localhost:5000/api/health)",
+      "Bash(PGPASSWORD=admin123 psql:*)",
+      "Bash(node -e \"console.log\\('backend ok'\\)\")",
+      "Bash(pkill -f \"node src/server.js\")",
+      "Bash(curl -s -X POST http://localhost:5000/api/auth/login -H 'Content-Type: application/json' -d '{\"username\":\"admin\",\"password\":\"admin123\"}')",
+      "Bash(pkill -f \"node src/server.js\" pkill -f \"server.js\" sleep 2 lsof -i :5000)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill /PID 13772 /F)",
+      "Bash(curl:*)",
+      "Bash(node:*)",
+      "Bash(cmd.exe /c \"taskkill /F /PID 13772\")",
+      "Bash(npm run:*)",
+      "Bash(sed -n '137,141p' /c/crackers-billing/frontend/src/pages/NewBill.jsx)",
+      "Bash(sed -n '322,327p' /c/crackers-billing/frontend/src/pages/NewBill.jsx)",
+      "Bash(psql -U postgres -d crackers_billing -c 'ALTER TABLE products ADD COLUMN IF NOT EXISTS company_name VARCHAR\\(100\\);')",
+      "Bash(tasklist)",
+      "Bash(taskkill:*)",
+      "Bash(cmd:*)",
+      "Bash(kill -9 16432)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(ls C:/crackers-billing/frontend/.env*)",
+      "Bash(winget install:*)",
+      "Bash(cloudflared --version)",
+      "Bash(\"/c/Program Files \\(x86\\)/cloudflared/cloudflared.exe\" --version)"
+    ]
+  }
+}

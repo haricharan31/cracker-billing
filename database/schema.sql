@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS products (
   category VARCHAR(20) NOT NULL CHECK (category IN ('standard', 'vadivel', 'others')),
   item_name VARCHAR(150) NOT NULL,
   item_code VARCHAR(20) UNIQUE NOT NULL,
+  company_name VARCHAR(100),
   boxes_per_case INTEGER NOT NULL DEFAULT 12,
   price_per_box DECIMAL(10,2) NOT NULL DEFAULT 0,
   is_active BOOLEAN DEFAULT true,

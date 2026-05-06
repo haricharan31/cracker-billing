@@ -95,11 +95,8 @@ router.get('/:id/pdf', authenticate, async (req, res) => {
 
     await generateBillPDF(bill);
 
-    const settingsResult = await pool.query("SELECT value FROM settings WHERE key = 'tunnel_url'");
-    const tunnelUrl = (settingsResult.rows[0]?.value || '').replace(/\/$/, '');
-    const pdf_url = tunnelUrl
-      ? `${tunnelUrl}/pdfs/${bill.bill_number}.pdf`
-      : `/pdfs/${bill.bill_number}.pdf`;
+    const tunnelUrl = 'https://cracker-billing.onrender.com';
+    const pdf_url = `${tunnelUrl}/pdfs/${bill.bill_number}.pdf`;
 
     res.json({ pdf_url, bill_number: bill.bill_number });
   } catch (err) {

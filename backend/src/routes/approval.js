@@ -71,9 +71,7 @@ router.put('/:token/approve', async (req, res) => {
     let pdf_url = null;
     let pdfError = null;
     try {
-      const settingsResult = await pool.query("SELECT key, value FROM settings WHERE key IN ('tunnel_url', 'owner_phone')");
-      const settings = Object.fromEntries(settingsResult.rows.map(r => [r.key, r.value]));
-      const tunnelUrl = (settings.tunnel_url || '').replace(/\/$/, '');
+      const tunnelUrl = 'https://cracker-billing.onrender.com';
 
       await generateBillPDF(fullBill);
 
@@ -81,7 +79,8 @@ router.put('/:token/approve', async (req, res) => {
         pdf_url = `${tunnelUrl}/pdfs/${bill.bill_number}.pdf`;
       }
 
-      const owner_phone = settings.owner_phone || null;
+      const settingsResult = await pool.query("SELECT value FROM settings WHERE key = 'owner_phone'");
+      const owner_phone = settingsResult.rows[0]?.value || null;
       const whatsapp_message = pdf_url
         ? `Bill Approved! ✅\nBill No: ${bill.bill_number}\nCustomer: ${bill.shop_name}\nGrand Total: Rs.${Number(bill.grand_total).toFixed(2)}\nDownload Invoice PDF: ${pdf_url}`
         : `Bill Approved! ✅\nBill No: ${bill.bill_number}\nCustomer: ${bill.shop_name}\nGrand Total: Rs.${Number(bill.grand_total).toFixed(2)}`;

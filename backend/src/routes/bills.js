@@ -14,17 +14,38 @@ async function getSettings(client) {
 
 async function generateBillNumber(client, prefix) {
   const year = new Date().getFullYear();
+  // Fetch all existing bill numbers for prefix and year
   const result = await client.query(
-    `SELECT bill_number FROM bills WHERE bill_number LIKE $1 ORDER BY id DESC LIMIT 1`,
+    `SELECT bill_number FROM bills WHERE bill_number LIKE $1`,
     [`${prefix}-${year}-%`]
   );
-  let seq = 1;
-  if (result.rows.length > 0) {
-    const last = result.rows[0].bill_number;
-    const parts = last.split('-');
-    seq = parseInt(parts[parts.length - 1], 10) + 1;
+  
+  let maxSeq = 0;
+  // Match standard numbers: <prefix>-<year>-<digits>
+  const regex = new RegExp(`^${prefix}-${year}-(\\d+)`);
+  for (const row of result.rows) {
+    const match = (row.bill_number || '').match(regex);
+    if (match) {
+      const num = parseInt(match[1], 10);
+      if (!isNaN(num) && num > maxSeq) {
+        maxSeq = num;
+      }
+    }
   }
-  return `${prefix}-${year}-${String(seq).padStart(4, '0')}`;
+  
+  // Find next available unique number to guarantee no constraint violations
+  let seq = maxSeq + 1;
+  while (true) {
+    const candidate = `${prefix}-${year}-${String(seq).padStart(4, '0')}`;
+    const exists = await client.query(
+      'SELECT 1 FROM bills WHERE bill_number = $1',
+      [candidate]
+    );
+    if (exists.rows.length === 0) {
+      return candidate;
+    }
+    seq++;
+  }
 }
 
 // GET /api/bills

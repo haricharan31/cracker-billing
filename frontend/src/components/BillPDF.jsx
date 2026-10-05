@@ -20,30 +20,27 @@ const styles = StyleSheet.create({
   page: {
     fontFamily: N,
     fontSize: 8.5,
-    paddingTop: 56,
-    paddingBottom: 56,
-    paddingHorizontal: 56,
+    paddingTop: 36,
+    paddingBottom: 36,
+    paddingHorizontal: 40,
     color: C.black,
   },
 
   // ── Header ──────────────────────────────────────────────
   headerTop:   { textAlign: 'center', fontSize: 9,    fontFamily: B, marginBottom: 3 },
-  headerTitle: { textAlign: 'center', fontSize: 13,   fontFamily: B, marginBottom: 8 },
-  rule: { borderBottomWidth: 1, borderBottomColor: C.line, marginBottom: 6 },
+  headerTitle: { textAlign: 'center', fontSize: 13,   fontFamily: B, marginBottom: 6 },
+  rule: { borderBottomWidth: 1, borderBottomColor: C.line, marginBottom: 5 },
 
   // ── Bill meta ────────────────────────────────────────────
-  metaBlock: { marginBottom: 6 },
-  metaRow:   { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 },
+  metaBlock: { marginBottom: 5 },
+  metaRow:   { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2.5 },
   metaLabel: { color: C.light },
   metaValueB: { fontFamily: B },
 
   // ── Section header ───────────────────────────────────────
-  sectionHeader: { fontFamily: B, fontSize: 9, marginTop: 8, marginBottom: 3 },
+  sectionHeader: { fontFamily: B, fontSize: 9, marginTop: 7, marginBottom: 3 },
 
-  // ── Borderless table wrapper (borders live on rows) ──────
-  table: {
-    marginBottom: 4,
-  },
+  // ── Table styling ────────────────────────────────────────
   tableHead: {
     flexDirection: 'row',
     backgroundColor: C.headerBg,
@@ -77,16 +74,16 @@ const styles = StyleSheet.create({
 
   // ── Cell base ────────────────────────────────────────────
   cell: {
-    paddingVertical: 3,
+    paddingVertical: 2.5,
     paddingHorizontal: 3,
     borderRightWidth: 0.5,
     borderRightColor: C.black,
-    fontSize: 8.5,
+    fontSize: 8,
   },
   cellLast: {
-    paddingVertical: 3,
+    paddingVertical: 2.5,
     paddingHorizontal: 3,
-    fontSize: 8.5,
+    fontSize: 8,
   },
   thTxt: { fontFamily: B },
 
@@ -102,24 +99,26 @@ const styles = StyleSheet.create({
   colTotal:    { width: '17%', textAlign: 'right' },
 
   // ── Subtotal ─────────────────────────────────────────────
-  subtotalRow:   { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 3, marginBottom: 2 },
-  subtotalLabel: { fontFamily: B, fontSize: 9, marginRight: 6 },
-  subtotalValue: { fontFamily: B, fontSize: 9, width: 64, textAlign: 'right' },
+  subtotalRow:   { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 3, marginBottom: 4 },
+  subtotalLabel: { fontFamily: B, fontSize: 8.5, marginRight: 6 },
+  subtotalValue: { fontFamily: B, fontSize: 8.5, width: 70, textAlign: 'right' },
 
   // ── Summary ──────────────────────────────────────────────
-  summarySection: { marginTop: 10, borderTopWidth: 1, borderTopColor: C.black, paddingTop: 6 },
-  summaryRow:   { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 },
-  summaryLabel: { color: C.mid, fontSize: 10 },
-  summaryValue: { fontSize: 10 },
+  summarySection: { marginTop: 8, borderTopWidth: 1, borderTopColor: C.black, paddingTop: 5 },
+  summaryRow:   { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 },
+  summaryLabel: { color: C.mid, fontSize: 9.5 },
+  summaryValue: { fontSize: 9.5 },
+
   grandTotalRow:  { flexDirection: 'row', justifyContent: 'space-between', marginTop: 4, paddingTop: 4, borderTopWidth: 0.5, borderTopColor: C.line },
-  grandTotalLabel: { fontFamily: B, fontSize: 11 },
-  grandTotalValue: { fontFamily: B, fontSize: 11 },
+  grandTotalLabel: { fontFamily: B, fontSize: 10.5 },
+  grandTotalValue: { fontFamily: B, fontSize: 10.5 },
+
   balanceRow:   { flexDirection: 'row', justifyContent: 'space-between', marginTop: 3 },
-  balanceLabel: { fontFamily: B, fontSize: 12 },
-  balanceValue: { fontFamily: B, fontSize: 12 },
+  balanceLabel: { fontFamily: B, fontSize: 11 },
+  balanceValue: { fontFamily: B, fontSize: 11 },
 
   // ── Seal Cases / RP boxes ────────────────────────────────────
-  sealRpSection: { marginTop: 14, flexDirection: 'row' },
+  sealRpSection: { marginTop: 10, flexDirection: 'row' },
   sealRpBoxLeft: {
     flex: 1,
     borderTopWidth: 1,
@@ -127,8 +126,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderRightWidth: 0,
     borderColor: C.black,
-    padding: 8,
-    minHeight: 44,
+    padding: 6,
+    minHeight: 40,
   },
   sealRpBoxRight: {
     flex: 1,
@@ -137,11 +136,11 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderColor: C.black,
-    padding: 8,
-    minHeight: 44,
+    padding: 6,
+    minHeight: 40,
   },
-  sealRpLabel: { fontFamily: B, fontSize: 9, marginBottom: 5 },
-  sealRpValue: { fontSize: 10 },
+  sealRpLabel: { fontFamily: B, fontSize: 8.5, marginBottom: 4 },
+  sealRpValue: { fontSize: 9.5 },
 });
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -168,7 +167,7 @@ function num(v) { return Number(v || 0); }
 function TableHeader({ showCompany }) {
   const itemCol = showCompany ? styles.colItemOthers : styles.colItem;
   return (
-    <View fixed style={styles.tableHead}>
+    <View style={styles.tableHead}>
       <Text style={[styles.cell, styles.thTxt, styles.colNo]}>#</Text>
       <Text style={[styles.cell, styles.thTxt, itemCol]}>
         {showCompany ? 'Item Name (Company)' : 'Item Name'}
@@ -216,19 +215,19 @@ function ItemRow({ item, showCompany, isLast }) {
 function ItemSection({ title, items, subtotal, showCompany }) {
   if (!items || items.length === 0) return null;
   return (
-    <View minPresenceAhead={80}>
-      <Text style={styles.sectionHeader}>{title}</Text>
-      <View style={styles.table}>
+    <>
+      <View wrap={false}>
+        <Text style={styles.sectionHeader}>{title}</Text>
         <TableHeader showCompany={showCompany} />
-        {items.map((item, i) => (
-          <ItemRow key={i} item={item} showCompany={showCompany} isLast={i === items.length - 1} />
-        ))}
       </View>
-      <View style={styles.subtotalRow}>
+      {items.map((item, i) => (
+        <ItemRow key={i} item={item} showCompany={showCompany} isLast={i === items.length - 1} />
+      ))}
+      <View wrap={false} style={styles.subtotalRow}>
         <Text style={styles.subtotalLabel}>{title} Subtotal:</Text>
         <Text style={styles.subtotalValue}>{rs(subtotal)}</Text>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -245,7 +244,6 @@ export function BillPDFDocument({ bill }) {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-
         {/* ── Header ── */}
         <Text style={styles.headerTop}>AMMA BHAGAWAN SHARANAM</Text>
         <Text style={styles.headerTitle}>LAXMI NARASIMHA TRADERS   JANGAON</Text>
@@ -300,7 +298,7 @@ export function BillPDFDocument({ bill }) {
         <ItemSection title="OTHERS"             items={others}    subtotal={bill.others_subtotal}    showCompany={true}  />
 
         {/* ── Summary ── */}
-        <View style={styles.summarySection}>
+        <View wrap={false} style={styles.summarySection}>
           {num(bill.standard_subtotal) > 0 && (
             <View style={styles.summaryRow}>
               <Text style={styles.summaryLabel}>Standard Subtotal:</Text>
@@ -354,7 +352,7 @@ export function BillPDFDocument({ bill }) {
         </View>
 
         {/* ── Seal Cases / RP boxes ── */}
-        <View style={styles.sealRpSection}>
+        <View wrap={false} style={styles.sealRpSection}>
           <View style={styles.sealRpBoxLeft}>
             <Text style={styles.sealRpLabel}>Total No. of Seal Cases:</Text>
             <Text style={styles.sealRpValue}>{num(bill.total_cases) > 0 ? String(num(bill.total_cases)) : ''}</Text>
@@ -364,7 +362,6 @@ export function BillPDFDocument({ bill }) {
             <Text style={styles.sealRpValue}>{bill.rp_count ? String(bill.rp_count) : ''}</Text>
           </View>
         </View>
-
       </Page>
     </Document>
   );
